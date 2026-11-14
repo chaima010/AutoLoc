@@ -5,9 +5,9 @@ import com.awd.monolith.job.dto.JobResponse;
 import com.awd.monolith.job.entity.Job;
 import com.awd.monolith.common.exception.ConflictException;
 import com.awd.monolith.common.exception.ResourceNotFoundException;
-import com.awd.monolith.candidature.repository.ApplicationRepository;
+import com.awd.monolith.candidature.repository.IApplicationRepository;
 import com.awd.monolith.job.mapper.JobMapper;
-import com.awd.monolith.job.repository.JobRepository;
+import com.awd.monolith.job.repository.IJobRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,13 +17,13 @@ import java.util.List;
 @Transactional
 public class JobService {
 
-    private final JobRepository jobRepository;
+    private final IJobRepository jobRepository;
     private final CategoryService categoryService;
     // Monolith coupling: the job module reads the candidature table directly.
-    private final ApplicationRepository applicationRepository;
+    private final IApplicationRepository applicationRepository;
 
-    public JobService(JobRepository jobRepository, CategoryService categoryService,
-                      ApplicationRepository applicationRepository) {
+    public JobService(IJobRepository jobRepository, CategoryService categoryService,
+                      IApplicationRepository applicationRepository) {
         this.jobRepository = jobRepository;
         this.categoryService = categoryService;
         this.applicationRepository = applicationRepository;

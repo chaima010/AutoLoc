@@ -7,8 +7,8 @@ import com.awd.monolith.candidat.entity.Candidate;
 import com.awd.monolith.common.exception.ConflictException;
 import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.candidat.mapper.CandidatMapper;
-import com.awd.monolith.candidat.repository.CandidateRepository;
-import com.awd.monolith.candidature.repository.ApplicationRepository;
+import com.awd.monolith.candidat.repository.ICandidateRepository;
+import com.awd.monolith.candidature.repository.IApplicationRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,14 +18,14 @@ import java.util.List;
 @Transactional
 public class CandidateService {
 
-    private final CandidateRepository candidateRepository;
+    private final ICandidateRepository candidateRepository;
     private final AddressService addressService;
     // Monolith coupling: the candidat module reads the candidature table directly.
     // In the microservice version this becomes a REST call to the candidature service.
-    private final ApplicationRepository applicationRepository;
+    private final IApplicationRepository applicationRepository;
 
-    public CandidateService(CandidateRepository candidateRepository, AddressService addressService,
-                            ApplicationRepository applicationRepository) {
+    public CandidateService(ICandidateRepository candidateRepository, AddressService addressService,
+                            IApplicationRepository applicationRepository) {
         this.candidateRepository = candidateRepository;
         this.addressService = addressService;
         this.applicationRepository = applicationRepository;

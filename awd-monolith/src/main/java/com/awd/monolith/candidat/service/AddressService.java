@@ -5,7 +5,7 @@ import com.awd.monolith.candidat.dto.AddressResponse;
 import com.awd.monolith.candidat.entity.Address;
 import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.candidat.mapper.CandidatMapper;
-import com.awd.monolith.candidat.repository.AddressRepository;
+import com.awd.monolith.candidat.repository.IAddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +15,9 @@ import java.util.List;
 @Transactional
 public class AddressService {
 
-    private final AddressRepository addressRepository;
+    private final IAddressRepository addressRepository;
 
-    public AddressService(AddressRepository addressRepository) {
+    public AddressService(IAddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 

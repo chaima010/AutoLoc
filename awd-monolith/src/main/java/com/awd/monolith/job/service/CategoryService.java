@@ -6,8 +6,8 @@ import com.awd.monolith.job.entity.Category;
 import com.awd.monolith.common.exception.ConflictException;
 import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.job.mapper.JobMapper;
-import com.awd.monolith.job.repository.CategoryRepository;
-import com.awd.monolith.job.repository.JobRepository;
+import com.awd.monolith.job.repository.ICategoryRepository;
+import com.awd.monolith.job.repository.IJobRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +17,10 @@ import java.util.List;
 @Transactional
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
-    private final JobRepository jobRepository;
+    private final ICategoryRepository categoryRepository;
+    private final IJobRepository jobRepository;
 
-    public CategoryService(CategoryRepository categoryRepository, JobRepository jobRepository) {
+    public CategoryService(ICategoryRepository categoryRepository, IJobRepository jobRepository) {
         this.categoryRepository = categoryRepository;
         this.jobRepository = jobRepository;
     }

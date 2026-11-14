@@ -7,7 +7,7 @@ import com.awd.monolith.candidature.dto.ApplicationResponse;
 import com.awd.monolith.candidature.dto.ApplicationUpdateRequest;
 import com.awd.monolith.candidature.entity.Application;
 import com.awd.monolith.candidature.mapper.ApplicationMapper;
-import com.awd.monolith.candidature.repository.ApplicationRepository;
+import com.awd.monolith.candidature.repository.IApplicationRepository;
 import com.awd.monolith.common.exception.ConflictException;
 import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.job.entity.Job;
@@ -30,11 +30,11 @@ import java.util.List;
 @Transactional
 public class ApplicationService {
 
-    private final ApplicationRepository applicationRepository;
+    private final IApplicationRepository applicationRepository;
     private final CandidateService candidateService;
     private final JobService jobService;
 
-    public ApplicationService(ApplicationRepository applicationRepository,
+    public ApplicationService(IApplicationRepository applicationRepository,
                               CandidateService candidateService,
                               JobService jobService) {
         this.applicationRepository = applicationRepository;
