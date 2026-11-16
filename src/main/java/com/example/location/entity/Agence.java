@@ -1,5 +1,6 @@
 package com.example.location.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +22,11 @@ public class Agence {
 
     // Une agence possède plusieurs employés
     @OneToMany(mappedBy = "agence")
+    @JsonIgnore
     private List<Employe> employes;
 
     // Une agence gère plusieurs véhicules
     @OneToMany(mappedBy = "agence")
+    @JsonIgnore
     private List<Vehicule> vehicules;
 }

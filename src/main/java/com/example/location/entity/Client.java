@@ -1,5 +1,6 @@
 package com.example.location.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +25,6 @@ public class Client {
 
     // Un client peut effectuer plusieurs réservations
     @OneToMany(mappedBy = "client")
+    @JsonIgnore
     private List<Reservation> reservations;
 }

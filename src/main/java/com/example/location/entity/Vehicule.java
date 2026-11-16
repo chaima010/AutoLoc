@@ -2,6 +2,7 @@ package com.example.location.entity;
 
 import com.example.location.enums.CategorieVehicule;
 import com.example.location.enums.StatutVehicule;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,10 +37,12 @@ public class Vehicule {
 
     // Un véhicule peut avoir plusieurs maintenances
     @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
     private List<Maintenance> maintenances;
 
     // Un véhicule peut être réservé plusieurs fois
     @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
     private List<Reservation> reservations;
 
     // Plusieurs véhicules peuvent utiliser plusieurs équipements
@@ -49,5 +52,6 @@ public class Vehicule {
             joinColumns = @JoinColumn(name = "id_vehicule"),
             inverseJoinColumns = @JoinColumn(name = "id_equipement")
     )
+    @JsonIgnore
     private List<Equipement> equipements;
 }

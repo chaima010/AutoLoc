@@ -1,5 +1,6 @@
 package com.example.location.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class Contrat {
     private Reservation reservation;
 
     // Côté inverse de la relation avec Paiement
-    @OneToOne(mappedBy = "contrat")
+    @OneToOne(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("contrat-paiement")
     private Paiement paiement;
 }

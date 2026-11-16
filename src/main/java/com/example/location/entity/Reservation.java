@@ -33,5 +33,6 @@ public class Reservation {
 
     // Une réservation est associée à un contrat
     @OneToOne(mappedBy = "reservation")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     private Contrat contrat;
 }
