@@ -2,7 +2,7 @@ package com.awd.monolith.job.controller;
 
 import com.awd.monolith.job.dto.JobRequest;
 import com.awd.monolith.job.dto.JobResponse;
-import com.awd.monolith.job.service.JobService;
+import com.awd.monolith.job.service.IJobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,9 +23,9 @@ import java.util.List;
 @Tag(name = "Jobs", description = "Manage job offers")
 public class JobController {
 
-    private final JobService jobService;
+    private final IJobService jobService;
 
-    public JobController(JobService jobService) {
+    public JobController(IJobService jobService) {
         this.jobService = jobService;
     }
 

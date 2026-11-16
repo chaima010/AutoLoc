@@ -2,7 +2,7 @@ package com.awd.monolith.candidat.controller;
 
 import com.awd.monolith.candidat.dto.CandidateRequest;
 import com.awd.monolith.candidat.dto.CandidateResponse;
-import com.awd.monolith.candidat.service.CandidateService;
+import com.awd.monolith.candidat.service.ICandidateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,9 +23,9 @@ import java.util.List;
 @Tag(name = "Candidates", description = "Manage candidates and link them to an address")
 public class CandidateController {
 
-    private final CandidateService candidateService;
+    private final ICandidateService candidateService;
 
-    public CandidateController(CandidateService candidateService) {
+    public CandidateController(ICandidateService candidateService) {
         this.candidateService = candidateService;
     }
 

@@ -3,8 +3,8 @@ package com.awd.monolith.job.controller;
 import com.awd.monolith.job.dto.CategoryRequest;
 import com.awd.monolith.job.dto.CategoryResponse;
 import com.awd.monolith.job.dto.JobResponse;
-import com.awd.monolith.job.service.CategoryService;
-import com.awd.monolith.job.service.JobService;
+import com.awd.monolith.job.service.ICategoryService;
+import com.awd.monolith.job.service.IJobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,10 +25,10 @@ import java.util.List;
 @Tag(name = "Categories", description = "Manage job categories")
 public class CategoryController {
 
-    private final CategoryService categoryService;
-    private final JobService jobService;
+    private final ICategoryService categoryService;
+    private final IJobService jobService;
 
-    public CategoryController(CategoryService categoryService, JobService jobService) {
+    public CategoryController(ICategoryService categoryService, IJobService jobService) {
         this.categoryService = categoryService;
         this.jobService = jobService;
     }

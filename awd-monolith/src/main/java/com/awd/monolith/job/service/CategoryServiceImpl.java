@@ -1,40 +1,43 @@
 package com.awd.monolith.job.service;
 
+import com.awd.monolith.common.exception.ConflictException;
+import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.job.dto.CategoryRequest;
 import com.awd.monolith.job.dto.CategoryResponse;
 import com.awd.monolith.job.entity.Category;
-import com.awd.monolith.common.exception.ConflictException;
-import com.awd.monolith.common.exception.ResourceNotFoundException;
 import com.awd.monolith.job.mapper.JobMapper;
 import com.awd.monolith.job.repository.ICategoryRepository;
 import com.awd.monolith.job.repository.IJobRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Implémentation du service métier des catégories de postes.
+ */
 @Service
 @Transactional
-public class CategoryService {
+@RequiredArgsConstructor
+public class CategoryServiceImpl implements ICategoryService {
 
     private final ICategoryRepository categoryRepository;
     private final IJobRepository jobRepository;
 
-    public CategoryService(ICategoryRepository categoryRepository, IJobRepository jobRepository) {
-        this.categoryRepository = categoryRepository;
-        this.jobRepository = jobRepository;
-    }
-
+    @Override
     @Transactional(readOnly = true)
     public List<CategoryResponse> findAll() {
         return categoryRepository.findAll().stream().map(JobMapper::toResponse).toList();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public CategoryResponse findById(Long id) {
         return JobMapper.toResponse(getCategory(id));
     }
 
+    @Override
     public CategoryResponse create(CategoryRequest request) {
         if (categoryRepository.existsByNameIgnoreCase(request.name().trim())) {
             throw new ConflictException("A category named '" + request.name() + "' already exists");
@@ -42,6 +45,7 @@ public class CategoryService {
         return JobMapper.toResponse(categoryRepository.save(JobMapper.toEntity(request)));
     }
 
+    @Override
     public CategoryResponse update(Long id, CategoryRequest request) {
         Category category = getCategory(id);
         if (categoryRepository.existsByNameIgnoreCaseAndIdNot(request.name().trim(), id)) {
@@ -52,6 +56,7 @@ public class CategoryService {
     }
 
     /** A category that still has jobs cannot be deleted (matches ON DELETE RESTRICT in the SQL script). */
+    @Override
     public void delete(Long id) {
         Category category = getCategory(id);
         if (jobRepository.existsByCategoryId(id)) {
@@ -60,8 +65,10 @@ public class CategoryService {
         categoryRepository.delete(category);
     }
 
-    Category getCategory(Long id) {
+    @Override
+    public Category getCategory(Long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Category", id));
     }
 }
+

@@ -3,7 +3,7 @@ package com.awd.monolith.candidature.controller;
 import com.awd.monolith.candidature.dto.ApplicationRequest;
 import com.awd.monolith.candidature.dto.ApplicationResponse;
 import com.awd.monolith.candidature.dto.ApplicationUpdateRequest;
-import com.awd.monolith.candidature.service.ApplicationService;
+import com.awd.monolith.candidature.service.IApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,9 +23,9 @@ import java.util.List;
 @Tag(name = "Candidatures", description = "Applications of candidates to jobs")
 public class ApplicationController {
 
-    private final ApplicationService applicationService;
+    private final IApplicationService applicationService;
 
-    public ApplicationController(ApplicationService applicationService) {
+    public ApplicationController(IApplicationService applicationService) {
         this.applicationService = applicationService;
     }
 

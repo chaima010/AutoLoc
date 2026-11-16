@@ -2,7 +2,7 @@ package com.awd.monolith.candidat.controller;
 
 import com.awd.monolith.candidat.dto.AddressRequest;
 import com.awd.monolith.candidat.dto.AddressResponse;
-import com.awd.monolith.candidat.service.AddressService;
+import com.awd.monolith.candidat.service.IAddressService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,9 +23,9 @@ import java.util.List;
 @Tag(name = "Addresses", description = "Manage addresses")
 public class AddressController {
 
-    private final AddressService addressService;
+    private final IAddressService addressService;
 
-    public AddressController(AddressService addressService) {
+    public AddressController(IAddressService addressService) {
         this.addressService = addressService;
     }
 

@@ -1,4 +1,4 @@
-package org.example.chaimadahdouh4ssa16;
+package com.example.location;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,3 +11,4 @@ class ChaimaDahdouh4Ssa16ApplicationTests {
     }
 
 }
+
